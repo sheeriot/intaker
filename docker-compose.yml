@@ -1,0 +1,26 @@
+# Base docker-compose file. Use docker-compose.override.yml files as needed.
+
+services:
+
+  intaker:
+    build:
+      context: ./intaker
+    env_file:
+      - intaker/env/django.env
+    entrypoint: /opt/app/docker-entrypoint.sh  # export static, migrate then run "command" from shell
+    command: gunicorn --bind=0.0.0.0:8000 --workers=${WORKERS:-3} intaker.wsgi
+    restart: unless-stopped
+    ports:
+     - 8000:8000
+    volumes:
+      - intaker_staticfiles:/opt/app/static_files
+    #   - local-db:/opt/app/db
+
+volumes:
+  # local-db:
+  intaker_staticfiles:
+
+networks:
+  default: 
+    name: webhost
+    external: true

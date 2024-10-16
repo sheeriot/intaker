@@ -1,0 +1,7 @@
+services:
+
+  intaker:
+    volumes:
+      # for development and debugging
+      # make the code folder live
+      - $PWD/intaker/webapp:/opt/app/intaker

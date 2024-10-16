@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<p />
+<h2>
+Welcome to the Intaker Tool!
+</h2>
+{% if user.is_authenticated %}
+<p>Please report defects and enhancement requests to Kris Thompson.</p>
+<hr />
+
+<div class="d-flex justify-content-center">
+    <img src="{% static 'images/box-arrow-in-right.svg' %}" />
+</div>
+<p />
+<p />
+<div class="row">
+    <div class="col-sm-8 mx-auto d-flex justify-content-center">
+        <p>
+            <a href="https://github.com/sheeriot">https://github.com/sheeriot/</a>.
+        </p
+    </div>
+</div>
+
+{% else %}
+<hr />
+<p />
+<p />
+<div class="d-flex justify-content-center">
+    <img src="{% static 'images/form-inputs-1024x512.png.webp' %}" height="400px" />
+</div>
+<p />
+<p />
+<div class="row">
+    <div class="col-sm-8 mx-auto d-flex justify-content-center">
+        <p>
+            <a href="https://en.wikipedia.org/wiki/Endless_knot">Random Link</a>.
+        </p>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
