@@ -7,17 +7,18 @@ services:
       context: ./intaker
     env_file:
       - intaker/env/django.env
-    entrypoint: /opt/app/docker-entrypoint.sh  # export static, migrate then run "command" from shell
+    entrypoint: /opt/app/docker-entrypoint.sh
+      # export static_files, migrate DB, then run "command"
     command: gunicorn --bind=0.0.0.0:8000 --workers=${WORKERS:-3} intaker.wsgi
     restart: unless-stopped
     ports:
      - 8000:8000
     volumes:
       - intaker_staticfiles:/opt/app/static_files
-    #   - local-db:/opt/app/db
+      - local-db:/opt/app/db
 
 volumes:
-  # local-db:
+  local-db:
   intaker_staticfiles:
 
 networks:

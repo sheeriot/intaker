@@ -9,13 +9,12 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
 from pathlib import Path
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -48,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    # 'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_bootstrap_icons',
@@ -90,7 +89,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'intaker.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -103,7 +101,6 @@ DATABASES = {
         'NAME': SQLITE_FILE
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -125,7 +122,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -173,11 +169,8 @@ USE_TZ = True
 #     'https://netdna.bootstrapcdn.com',
 # )
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
-
-# STATIC_URL = 'static/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
@@ -186,17 +179,18 @@ STATIC_ROOT = '/opt/app/static_files/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Crispy Template Pack
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-# expire sessions
+# Sessions
+SESSION_ENGINE = "django.contrib.sessions.backends.file"
 SESSION_COOKIE_AGE = 1 * 24 * 60 * 60  # 1 day cookie
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 64
 
 BOOTSTRAP5 = {
     "css_url": {
