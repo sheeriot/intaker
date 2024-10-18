@@ -12,21 +12,18 @@
 <br>
 <div>
   <!-- <img src="{% static 'EndDeviceB_100.png' %}" class="d-inline" alt="Device" height="100" width="45"> -->
-  <h2 class="d-inline content-heading">Rocks > Add Rock</h2>
+  <h2 class="d-inline content-heading">{{ lake.name }} Rocks > Add a Rock</h2>
 </div>
 <hr />
-<h2>
-  <!-- <img src="{% static 'Gear01_25.png' %}" class="d-inline" alt="End Device"> -->
-  Add a new Rock location with the form below.
-</h2>
-
 {% if messages %}
 <ul class="messages">
   {% for message in messages %}
     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
   {% endfor %}
 </ul>
+<hr />
 {% endif %}
+
 
 {% crispy form %}
 

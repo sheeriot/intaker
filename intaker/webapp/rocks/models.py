@@ -10,7 +10,7 @@ class Lake(models.Model):
         return self.name
 
 class Rock(models.Model):
-    lake = models.ForeignKey(Lake, on_delete=models.CASCADE, related_name='rocks')
+    lake = models.ForeignKey(Lake, on_delete=models.CASCADE, related_name='rocks', blank=False)
     name = models.CharField(max_length=50)
     marker_id = models.CharField(max_length=10, blank=True, null=True)
     latitude = models.DecimalField(max_digits=10, decimal_places=5, blank=True, null=True)
