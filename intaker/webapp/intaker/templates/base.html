@@ -34,9 +34,7 @@
     <nav class="navbar navbar-expand-md navbar-dark" style="background: darkblue;">
       <div class="container mx-1">
         <div class="col-1" id="logo">
-          <a href="https://austinvoicedata.com">
-            <img src="{% static 'images/AVD_ScopeLogo1_sm.jpg' %}" alt="AustinVoiceData">
-          </a>
+            <img src="{% static 'images/intaker-icon1.webp' %}" alt="Intaker App Icon">
         </div>
         <!-- <div class="col-1"></div> -->
         <div class="col-2 text-center d-inline fw-bold lh-1 navbar-brand">
@@ -58,9 +56,21 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
-                    <a class="dropdown-item" href="{% url 'addrock_by_lake' lakeslug='eaglelake' %}">
+                    <a class="dropdown-item" href="{% url 'lakes' %}">
+                      <img src="{% static 'images/lake-svgrepo-com.svg' %}" height="50px" width="50px">
+                      Lakes
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="{% url 'rockadd_by_lake' lakeslug='eaglelake' %}">
                       <img src="{% static 'images/eagle-svgrepo-com.svg' %}" height="50px" width="50px">
-                      EagleLake
+                      Eagle Lake - Add a Rock
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="{% url 'rockadd_by_lake' lakeslug='kipley' %}">
+                      <img src="{% static 'images/asteroid-svgrepo-com.svg' %}" height="50px" width="50px">
+                      Lake Kipley - Add a Rock
                     </a>
                   </li>
                   <!-- <li><hr class="dropdown-divider"></li>
@@ -126,6 +136,11 @@
         Detected time is {% now "jS F Y H:i" %}
       </p>
       <p><a href='/admin'>admin</a></p>
+      <p>by Austin Voice Data <div>
+        <a href="https://austinvoicedata.com">
+          <img src="{% static 'images/AVD_ScopeLogo1_sm.jpg' %}" alt="AustinVoiceData" height="120px">
+        </a>
+      </p>
     </div>
   </footer>
   {% tz_detect %}

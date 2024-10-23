@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load dict_key %}
+
+{% block content %}
+
+{% if actionResponse in locals %}
+<div class="alert alert-danger" role="alert">
+    {{actionResponse}}
+</div>
+{% endif %}
+<br>
+<div>
+  <!-- <img src="{% static 'EndDeviceB_100.png' %}" class="d-inline" alt="Device" height="100" width="45"> -->
+  <h2 class="d-inline content-heading">Lakes</h2>
+</div>
+<hr />
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+  {% endfor %}
+</ul>
+<hr />
+{% endif %}
+
+{% if rocks %}
+<div class="alert alert-info" role="alert">
+    Found {{ rocks|length }} rocks in {{ lake.name }}.
+</div>
+
+<h2>Edit {{ lake.name }} Rocks</h2>
+<p>Sorry, no header row yet.<br>
+Name, Marker_ID, Status, Latitude, Longitude, Depth, Size
+- use meters
+</p>
+
+{% for rock in rocks %}
+  {% with form=rock_forms|dict_key:rock.id %}
+      {% crispy form %}
+  {% endwith %}
+{% endfor %}
+
+{% else %}
+<div class="alert alert-warning" role="alert">
+    No rocks found in {{ lake.name }}.
+</div>
+{% endif %}
+{% endblock %}

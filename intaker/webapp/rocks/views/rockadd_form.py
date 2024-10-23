@@ -1,10 +1,10 @@
 from django import forms
-from .models import Rock, Lake
+from ..models import Rock, Lake
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, Submit, Field, Row, Column
 from icecream import ic
 
-class RockForm(forms.ModelForm):
+class RockAddForm(forms.ModelForm):
     class Meta:
         model = Rock
         fields = [

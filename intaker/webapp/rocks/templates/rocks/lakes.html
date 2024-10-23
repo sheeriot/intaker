@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% if actionResponse in locals %}
+<div class="alert alert-danger" role="alert">
+    {{actionResponse}}
+</div>
+{% endif %}
+<br>
+<div>
+  <!-- <img src="{% static 'EndDeviceB_100.png' %}" class="d-inline" alt="Device" height="100" width="45"> -->
+  <h2 class="d-inline content-heading">Lakes</h2>
+</div>
+<hr />
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+  {% endfor %}
+</ul>
+<hr />
+{% endif %}
+
+{% if lakes %}
+<div class="alert alert-info" role="alert">
+    Found {{ lakes|length }} lakes.
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Lake Name</th>
+            <th>Slug</th>
+            <th>Rock Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for lake in lakes %}
+        <tr>
+            <td>{{ lake.name }}</td>
+            <td>{{ lake.slug }}</td>
+            <td><a href="{% url 'rocklist_by_lake' lakeslug=lake.slug %}">{{ lake.rock_count }}</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="alert alert-warning" role="alert">
+    No lakes found.
+</div>
+{% endif %}
+{% endblock %}
