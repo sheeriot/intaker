@@ -1,7 +1,7 @@
 from django import forms
 from ..models import Rock, Lake
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Row, Column
+from crispy_forms.layout import Layout, Submit, Row, Column, Field
 from icecream import ic
 
 class RockEditRowForm(forms.ModelForm):
@@ -17,17 +17,16 @@ class RockEditRowForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-        # self.fields['name'].label = "Rock Name"
         self.helper.form_show_labels = False
         self.helper.layout = Layout(
             Row(
-                Column('name', css_class='col-md-2 m-0 p-0'),
-                Column('marker_id', css_class='col-md-1 m-0 p-0'),
-                Column('status', css_class='col-md-2 m-0 p-0'),
-                Column('latitude', css_class='col-md-2 m-0 p-0'),
-                Column('longitude', css_class='col-md-2 m-0 p-0'),
-                Column('depth', css_class='col-md-1 m-0 p-0'),
-                Column('size', css_class='col-md-1 m-0 p-0'),
-                Column(Submit('submit', 'Update'), css_class='col-md-1 m-0 p-0')
+                Column(Field('name', template='tablefields.html'), css_class='col-md-2 m-0 p-0'),
+                Column(Field('marker_id', template='tablefields.html'), css_class='col-md-1 m-0 p-0'),
+                Column(Field('status', template='tablefields.html'), css_class='col-md-2 m-0 p-0'),
+                Column(Field('latitude', template='tablefields.html'), css_class='col-md-2 m-0 p-0'),
+                Column(Field('longitude', template='tablefields.html'), css_class='col-md-2 m-0 p-0'),
+                Column(Field('depth', template='tablefields.html'), css_class='col-md-1 m-0 p-0'),
+                Column(Field('size', template='tablefields.html'), css_class='col-md-1 m-0 p-0'),
+                Column(Submit('submit', 'Update', css_class="px-1 py-0 m-0 mb-1 tableedit"), css_class='col-md-1 m-0 p-0')
             )
         )

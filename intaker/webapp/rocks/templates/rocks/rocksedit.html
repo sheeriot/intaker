@@ -13,7 +13,7 @@
 <br>
 <div>
   <!-- <img src="{% static 'EndDeviceB_100.png' %}" class="d-inline" alt="Device" height="100" width="45"> -->
-  <h2 class="d-inline content-heading">Lakes</h2>
+  <h2 class="d-inline content-heading">Edit {{ lake.name }} Rocks</h2>
 </div>
 <hr />
 {% if messages %}
@@ -30,18 +30,29 @@
     Found {{ rocks|length }} rocks in {{ lake.name }}.
 </div>
 
-<h2>Edit {{ lake.name }} Rocks</h2>
-<p>Sorry, no header row yet.<br>
-Name, Marker_ID, Status, Latitude, Longitude, Depth, Size
-- use meters
+<h2 class="display-6">{{ lake.name }} Rock Updater</h2>
+<p class="lead">Be careful editing</p>
+<ul>
+  <li>Latitude and Longitude should be five (5) decimal points.</li>
+  <li>Depth is meters, most hazards are 0.5 meters deep.</li>
+  <li>Size is diameter of hazard.</li>
+</ul>
 </p>
-
+<div class="row fw-bold">
+  <div class="col-md-2 m-0 p-0 small">Name</div>
+  <div class="col-md-1 m-0 p-0 small">Marker</div>
+  <div class="col-md-2 m-0 p-0 small">Status</div>
+  <div class="col-md-2 m-0 p-0 small">Latitude</div>
+  <div class="col-md-2 m-0 p-0 small">Longitude</div>
+  <div class="col-md-1 m-0 p-0 small">Depth</div>
+  <div class="col-md-1 m-0 p-0 small">Size</div>
+  <div class="col-md-1 m-0 p-0 small">Action</div>
+</div>
 {% for rock in rocks %}
   {% with form=rock_forms|dict_key:rock.id %}
-      {% crispy form %}
+    {% crispy form %}
   {% endwith %}
 {% endfor %}
-
 {% else %}
 <div class="alert alert-warning" role="alert">
     No rocks found in {{ lake.name }}.
